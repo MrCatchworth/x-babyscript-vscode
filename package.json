@@ -1,0 +1,26 @@
+{
+    "name": "x-rebirth-babyscript",
+    "displayName": "X:Rebirth Babyscript",
+    "description": "Language Support for X:Rebirth Babyscript",
+    "version": "0.0.1",
+    "publisher": "JohnnyJingle",
+    "engines": {
+        "vscode": "^1.28.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "xrebirthbabyscript",
+            "aliases": ["X:Rebirth Babyscript", "xrebirthbabyscript"],
+            "extensions": [".xrbs"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "xrebirthbabyscript",
+            "scopeName": "source.xrbs",
+            "path": "./syntaxes/xrebirthbabyscript.tmLanguage.json"
+        }]
+    }
+}

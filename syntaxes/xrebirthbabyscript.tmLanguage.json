@@ -1,0 +1,137 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "X:Rebirth Babyscript",
+	"patterns": [
+		{
+			"include": "#document"
+		}
+	],
+	"repository": {
+		"document": {
+			"patterns": [
+				{ "include": "#blockComment" },
+				{ "include": "#structuralActions" },
+				{ "include": "#always" },
+				{
+					"begin": "\\(",
+					"end": "\\)",
+					"patterns": [
+						{ "include": "#attributeList" }
+					]
+				}
+			]
+		},
+		"attributeList": {
+			"patterns": [
+				{ "include": "#attributeName" },
+				{ "include": "#always" }
+			]
+		},
+		"always": {
+			"patterns": [
+				{ "include": "#slashComment" },
+				{ "include": "#keywords" },
+				{ "include": "#strings" },
+				{ "include": "#numbers" },
+				{ "include": "#variables" }
+			]
+		},
+		"structuralActions": {
+			"name": "keyword.control.xrebirthbabyscript",
+			"match": "\\b(mdscript|aiscript|cue|conditions|actions|check_[A-Za-z_]+|event_[A-Za-z_]+|do_[A-Za-z_]+|cues|params?|library|if|then|elseif|else|for|while)\\b",
+			"patterns": []
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "storage.type.xrebirthbabyscript",
+					"match": "\\b(i|L|f|LF|ct|Cr|m|km|deg|rad|hp|ms|s|min|h)\\b"
+				},
+				{
+					"name": "keyword.control.xrebirthbabyscript",
+					"match": "\\b(and|not|or|lt|le|gt|ge)\\b"
+				},
+				{
+					"name": "constant.language.xrebirthbabyscript",
+					"match": "\\b(true|false|null)\\b"
+				}
+			]
+		},
+		"attributeName": {
+			"name": "variable.language.xrebirthbabyscript",
+			"match": "\\b[A-Za-z][A-Za-z0-9_]*\\b(?=:)",
+			"patterns": []
+		},
+		"strings": {
+			"patterns": [
+				{
+					"include": "#sQuoteString"
+				},
+				{
+					"include": "#dQuoteString"
+				}
+			]
+		},
+		"sQuoteString": {
+			"name": "string.quoted.single.xrebirthbabyscript",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.xrebirthbabyscript",
+					"match": "\\\\."
+				}
+			]
+		},
+		"dQuoteString": {
+			"name": "string.quoted.double.xrebirthbabyscript",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.xrebirthbabyscript",
+					"match": "\\\\."
+				}
+			]
+		},
+		"slashComment": {
+			"name": "comment.line.double-slash.xrebirthbabyscript",
+			"begin": "//",
+			"end": "$\n?",
+			"patterns": [
+				
+			]
+		},
+		"blockComment": {
+			"name": "comment.block.xrebirthbabyscript",
+			"begin": "/\\*",
+			"end": "\\*/",
+			"patterns": [
+				
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.other.xrebirthbabyscript",
+					"match": "\\b[A-Za-z][A-Za-z0-9_]*\\b"
+				},
+				{
+					"name": "variable.other.xrebirthbabyscript",
+					"match": "\\$[A-Za-z][A-Za-z0-9_]*\\b"
+				}
+			]
+		},
+		"numbers": {
+			"name": "constant.numeric.xrebirthbabyscript",
+			"match": "\\b-?[0-9]+(?:\\.[0-9]+)?(?:e[0-9]+)?(i|L|f|LF|ct|Cr|m|km|deg|rad|hp|ms|s|min|h)?\\b",
+			"captures": {
+				"1": {
+					"name": "storage.type.xrebirthbabyscript"
+				}
+			},
+			"patterns": []
+		}
+	},
+	"scopeName": "source.xrbs"
+}
