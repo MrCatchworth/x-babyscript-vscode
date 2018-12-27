@@ -3,43 +3,63 @@
 	"name": "X:Rebirth Babyscript",
 	"patterns": [
 		{
-			"include": "#document"
+			"include": "#statements"
 		}
 	],
 	"repository": {
-		"document": {
+		"statements": {
 			"patterns": [
-				{ "include": "#blockComment" },
-				{ "include": "#structuralActions" },
-				{ "include": "#always" },
 				{
-					"begin": "\\(",
-					"end": "\\)",
-					"patterns": [
-						{ "include": "#attributeList" }
-					]
+					"include": "#strings"
+				},
+				{
+					"include": "#slashComment"
+				},
+				{
+					"include": "#blockComment"
+				},
+				{
+					"include": "#numbers"
+				},
+				{
+					"include": "#elements"
+				},
+				{
+					"include": "#attributeName"
+				},
+				{
+					"include": "#cueName"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#lookupToken"
+				},
+				{
+					"include": "#variables"
 				}
 			]
 		},
-		"attributeList": {
+		"elements": {
 			"patterns": [
-				{ "include": "#attributeName" },
-				{ "include": "#always" }
+				{
+					"match": "(mdscript|aiscript|cue|cues|library|params|conditions|actions|check_[A-Za-z_]+|event_[A-Za-z_]+|do_[A-Za-z_]+|if|then|elseif|else|for|while)[\\s\\n]*(?:[({;]|$)",
+					"captures": {
+						"1": {
+							"name": "keyword.control.xrebirthbabyscript"
+						}
+					}
+				},
+				{
+					"match": "([A-Za-z_]+)[\\s\\n]*(?:[({;]|$)",
+					"captures": {
+						"1": {
+							"name": "entity.name.function.xrebirthbabyscript"
+						}
+					}
+				}
 			]
-		},
-		"always": {
-			"patterns": [
-				{ "include": "#slashComment" },
-				{ "include": "#keywords" },
-				{ "include": "#strings" },
-				{ "include": "#numbers" },
-				{ "include": "#variables" }
-			]
-		},
-		"structuralActions": {
-			"name": "keyword.control.xrebirthbabyscript",
-			"match": "\\b(mdscript|aiscript|cue|conditions|actions|check_[A-Za-z_]+|event_[A-Za-z_]+|do_[A-Za-z_]+|cues|params?|library|if|then|elseif|else|for|while)\\b",
-			"patterns": []
 		},
 		"keywords": {
 			"patterns": [
@@ -53,12 +73,33 @@
 				},
 				{
 					"name": "constant.language.xrebirthbabyscript",
-					"match": "\\b(true|false|null)\\b"
+					"match": "\\b(true|false|null|this|static)\\b"
 				}
 			]
 		},
+		"lookupToken": {
+			"name": "variable.other.xrebirthbabyscript",
+			"match": "[a-z][A-Za-z0-9_]*",
+			"patterns": [
+				
+			]
+		},
+		"cueName": {
+			"name": "entity.name.type.xrebirthbabyscript",
+			"match": "[A-Z][A-Za-z\\d_]*",
+			"patterns": [
+				
+			]
+		},
+		"variables": {
+			"name": "entity.name.type.xrebirthbabyscript",
+			"match": "\\$[A-Za-z\\d_]+",
+			"patterns": [
+				
+			]
+		},
 		"attributeName": {
-			"name": "variable.language.xrebirthbabyscript",
+			"name": "entity.other.attribute-name.xrebirthbabyscript",
 			"match": "\\b[A-Za-z][A-Za-z0-9_]*\\b(?=:)",
 			"patterns": []
 		},
@@ -98,29 +139,13 @@
 			"name": "comment.line.double-slash.xrebirthbabyscript",
 			"begin": "//",
 			"end": "$\n?",
-			"patterns": [
-				
-			]
+			"patterns": []
 		},
 		"blockComment": {
 			"name": "comment.block.xrebirthbabyscript",
 			"begin": "/\\*",
 			"end": "\\*/",
-			"patterns": [
-				
-			]
-		},
-		"variables": {
-			"patterns": [
-				{
-					"name": "variable.other.xrebirthbabyscript",
-					"match": "\\b[A-Za-z][A-Za-z0-9_]*\\b"
-				},
-				{
-					"name": "variable.other.xrebirthbabyscript",
-					"match": "\\$[A-Za-z][A-Za-z0-9_]*\\b"
-				}
-			]
+			"patterns": []
 		},
 		"numbers": {
 			"name": "constant.numeric.xrebirthbabyscript",

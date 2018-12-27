@@ -1,7 +1,7 @@
 {
     "name": "x-rebirth-babyscript",
     "displayName": "X:Rebirth Babyscript",
-    "description": "Language Support for X:Rebirth Babyscript",
+    "description": "Syntax Highlighting for X:Rebirth Babyscript",
     "version": "0.0.1",
     "publisher": "JohnnyJingle",
     "engines": {
