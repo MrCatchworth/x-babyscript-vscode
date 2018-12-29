@@ -1,7 +1,7 @@
 {
-    "name": "x-rebirth-babyscript",
-    "displayName": "X:Rebirth Babyscript",
-    "description": "Syntax Highlighting for X:Rebirth Babyscript",
+    "name": "x-babyscript",
+    "displayName": "X-series Babyscript",
+    "description": "Syntax Highlighting for X-series Babyscript",
     "version": "0.0.1",
     "publisher": "JohnnyJingle",
     "engines": {
@@ -12,13 +12,13 @@
     ],
     "contributes": {
         "languages": [{
-            "id": "xrebirthbabyscript",
-            "aliases": ["X:Rebirth Babyscript", "xrebirthbabyscript"],
-            "extensions": [".xrbs"],
+            "id": "xbabyscript",
+            "aliases": ["X-series Babyscript", "xbabyscript"],
+            "extensions": [".xbs"],
             "configuration": "./language-configuration.json"
         }],
         "grammars": [{
-            "language": "xrebirthbabyscript",
+            "language": "xbabyscript",
             "scopeName": "source.xrbs",
             "path": "./syntaxes/xrebirthbabyscript.tmLanguage.json"
         }]

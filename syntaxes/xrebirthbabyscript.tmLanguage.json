@@ -1,162 +1,451 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "X:Rebirth Babyscript",
-	"patterns": [
-		{
-			"include": "#statements"
-		}
-	],
-	"repository": {
-		"statements": {
-			"patterns": [
-				{
-					"include": "#strings"
-				},
-				{
-					"include": "#slashComment"
-				},
-				{
-					"include": "#blockComment"
-				},
-				{
-					"include": "#numbers"
-				},
-				{
-					"include": "#elements"
-				},
-				{
-					"include": "#attributeName"
-				},
-				{
-					"include": "#cueName"
-				},
-				{
-					"include": "#keywords"
-				},
-				{
-					"include": "#lookupToken"
-				},
-				{
-					"include": "#variables"
-				}
-			]
-		},
-		"elements": {
-			"patterns": [
-				{
-					"match": "(mdscript|aiscript|cue|cues|library|params|conditions|actions|check_[A-Za-z_]+|event_[A-Za-z_]+|do_[A-Za-z_]+|if|then|elseif|else|for|while)[\\s\\n]*(?:[({;]|$)",
-					"captures": {
-						"1": {
-							"name": "keyword.control.xrebirthbabyscript"
-						}
-					}
-				},
-				{
-					"match": "([A-Za-z_]+)[\\s\\n]*(?:[({;]|$)",
-					"captures": {
-						"1": {
-							"name": "entity.name.function.xrebirthbabyscript"
-						}
-					}
-				}
-			]
-		},
-		"keywords": {
-			"patterns": [
-				{
-					"name": "storage.type.xrebirthbabyscript",
-					"match": "\\b(i|L|f|LF|ct|Cr|m|km|deg|rad|hp|ms|s|min|h)\\b"
-				},
-				{
-					"name": "keyword.control.xrebirthbabyscript",
-					"match": "\\b(and|not|or|lt|le|gt|ge)\\b"
-				},
-				{
-					"name": "constant.language.xrebirthbabyscript",
-					"match": "\\b(true|false|null|this|static)\\b"
-				}
-			]
-		},
-		"lookupToken": {
-			"name": "variable.other.xrebirthbabyscript",
-			"match": "[a-z][A-Za-z0-9_]*",
-			"patterns": [
-				
-			]
-		},
-		"cueName": {
-			"name": "entity.name.type.xrebirthbabyscript",
-			"match": "[A-Z][A-Za-z\\d_]*",
-			"patterns": [
-				
-			]
-		},
-		"variables": {
-			"name": "entity.name.type.xrebirthbabyscript",
-			"match": "\\$[A-Za-z\\d_]+",
-			"patterns": [
-				
-			]
-		},
-		"attributeName": {
-			"name": "entity.other.attribute-name.xrebirthbabyscript",
-			"match": "\\b[A-Za-z][A-Za-z0-9_]*\\b(?=:)",
-			"patterns": []
-		},
-		"strings": {
-			"patterns": [
-				{
-					"include": "#sQuoteString"
-				},
-				{
-					"include": "#dQuoteString"
-				}
-			]
-		},
-		"sQuoteString": {
-			"name": "string.quoted.single.xrebirthbabyscript",
-			"begin": "'",
-			"end": "'",
-			"patterns": [
-				{
-					"name": "constant.character.escape.xrebirthbabyscript",
-					"match": "\\\\."
-				}
-			]
-		},
-		"dQuoteString": {
-			"name": "string.quoted.double.xrebirthbabyscript",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.xrebirthbabyscript",
-					"match": "\\\\."
-				}
-			]
-		},
-		"slashComment": {
-			"name": "comment.line.double-slash.xrebirthbabyscript",
-			"begin": "//",
-			"end": "$\n?",
-			"patterns": []
-		},
-		"blockComment": {
-			"name": "comment.block.xrebirthbabyscript",
-			"begin": "/\\*",
-			"end": "\\*/",
-			"patterns": []
-		},
-		"numbers": {
-			"name": "constant.numeric.xrebirthbabyscript",
-			"match": "\\b-?[0-9]+(?:\\.[0-9]+)?(?:e[0-9]+)?(i|L|f|LF|ct|Cr|m|km|deg|rad|hp|ms|s|min|h)?\\b",
-			"captures": {
-				"1": {
-					"name": "storage.type.xrebirthbabyscript"
-				}
-			},
-			"patterns": []
-		}
-	},
-	"scopeName": "source.xrbs"
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "X:Rebirth Babyscript",
+    "patterns": [
+        {
+            "include": "#statements"
+        }
+    ],
+    "repository": {
+        "statements": {
+            "patterns": [
+                {
+                    "include": "#elements"
+                },
+                {
+                    "include": "#blocks"
+                },
+                {
+                    "include": "#slashComment"
+                },
+                {
+                    "include": "#blockComment"
+                },
+                {
+                    "include": "#attributeList"
+                },
+                {
+                    "include": "#assignRightHand"
+                },
+                {
+                    "include": "#braceLookup"
+                },
+                {
+                    "include": "#lookupDot"
+                },
+                {
+                    "match": ";",
+                    "name": "punctuation.terminator.statement.xbabyscript"
+                },
+                {
+                    "name": "entity.name.variable.xrebirthbabyscript",
+                    "match": "[$A-Za-z0-9_][A-Za-z0-9_]*"
+                }
+            ]
+        },
+        "expressions": {
+            "patterns": [
+                {
+                    "include": "#sQuoteString"
+                },
+                {
+                    "include": "#subExpression"
+                },
+                {
+                    "include": "#braceLookup"
+                },
+                {
+                    "include": "#tableDeclaration"
+                },
+                {
+                    "include": "#listDeclaration"
+                },
+                {
+                    "include": "#arithmeticOperators"
+                },
+                {
+                    "include": "#comparisonOperators"
+                },
+                {
+                    "include": "#nullUtilOperators"
+                },
+                {
+                    "include": "#numbers"
+                },
+                {
+                    "include": "#keywords"
+                },
+                {
+                    "include": "#readText"
+                },
+                {
+                    "include": "#lookupToken"
+                },
+                {
+                    "include": "#lookupDot"
+                }
+            ]
+        },
+        "blocks": {
+            "patterns": [
+                {
+                    "begin": "(\\{)",
+                    "end": "(\\})",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.curlybrace.open.xbabyscript"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.curlybrace.close.xbabyscript"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#statements"
+                        }
+                    ]
+                }
+            ]
+        },
+        "assignRightHand": {
+            "patterns": [
+                {
+                    "begin": "(=)",
+                    "end": "(;)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.operator.assignment.xbabyscript"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.terminator.statement.xbabyscript"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#expressions"
+                        }
+                    ]
+                }
+            ]
+        },
+        "subExpression": {
+            "patterns": [
+                {
+                    "begin": "(\\()",
+                    "end": "(\\))",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.parenthesis.open.xbabyscript"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.parenthesis.close.xbabyscript"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#expressions"
+                        }
+                    ]
+                }
+            ]
+        },
+        "braceLookup": {
+            "patterns": [
+                {
+                    "begin": "(\\.)(\\{)",
+                    "end": "(\\})",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.accessor.xbabyscript"
+                        },
+                        "2": {
+                            "name": "punctuation.curlybrace.open.xbabyscript"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.curlybrace.close.xbabyscript"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#expressions"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tableDeclaration": {
+            "patterns": [
+                {
+                    "begin": "(?x)    \\b(table)  \\s*  (\\[)",
+                    "end": "(\\])",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.operator.other.xbabyscript"
+                        },
+                        "2": {
+                            "name": "punctuation.squarebracket.open.xbabyscript"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.squarebracket.open.xbabyscript"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#expressions"
+                        }
+                    ]
+                }
+            ]
+        },
+        "listDeclaration": {
+            "patterns": [
+                {
+                    "begin": "(\\[)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.squarebracket.open.xbabyscript"
+                        }
+                    },
+                    "end": "(\\])",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.squarebracket.open.xbabyscript"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#expressions"
+                        },
+                        {
+                            "match": ",",
+                            "name": "punctuation.separator.comma.xbabyscript"
+                        }
+                    ]
+                }
+            ]
+        },
+        "readText": {
+            "patterns": [
+                {
+                    "match": "(?x)  (\\{)  ([0-9]+)  \\s*(,)\\s*  ([0-9]+)  (\\})",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.curlybrace.open.xbabyscript"
+                        },
+                        "2": {
+                            "name": "constant.numeric.xbabyscript"
+                        },
+                        "3": {
+                            "name": "punctuation.separator.comma.xbabyscript"
+                        },
+                        "4": {
+                            "name": "constant.numeric.xbabyscript"
+                        },
+                        "5": {
+                            "name": "punctuation.curlybrace.close.xbabyscript"
+                        }
+                    }
+                }
+            ]
+        },
+        "elements": {
+            "patterns": [
+                {
+                    "match": "(?x)    (?:^|;)    \\s*    \\b([A-Za-z][A-Za-z0-9_]*)\\b    \\s*    (?= \\( | (;) | $)",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.control.other.xrbs"
+                        },
+                        "2": {
+                            "name": "punctuation.terminator.statement.xrbs"
+                        }
+                    }
+                }
+            ]
+        },
+        "attributeList": {
+            "patterns": [
+                {
+                    "begin": "(\\()",
+                    "end": "(\\))",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.parenthesis.open.xbabyscript"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.parenthesis.close.xbabyscript"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "match": "\\b([A-Za-z][A-Za-z0-9_]*)\\b(:)",
+                            "captures": {
+                                "1": {
+                                    "name": "storage.type.xbabyscript"
+                                },
+                                "2": {
+                                    "name": "punctuation.separator.key-value.xbabyscript"
+                                }
+                            }
+                        },
+                        {
+                            "include": "#expressions"
+                        },
+                        {
+                            "include": "#dQuoteString"
+                        },
+                        {
+                            "match": ",",
+                            "name": "punctuation.separator.comma.xbabyscript"
+                        }
+                    ]
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "storage.type.xrebirthbabyscript",
+                    "match": "\\b(i|L|f|LF|ct|Cr|m|km|deg|rad|hp|ms|s|min|h)\\b"
+                },
+                {
+                    "name": "keyword.control.xrebirthbabyscript",
+                    "match": "\\b(and|not|or)\\b"
+                },
+                {
+                    "name": "constant.language.xrebirthbabyscript",
+                    "match": "\\b(true|false|null|this|static)\\b"
+                }
+            ]
+        },
+        "lookupToken": {
+            "name": "variable.other.xrebirthbabyscript",
+            "match": "[$A-Za-z0-9_][A-Za-z0-9_]*",
+            "patterns": []
+        },
+        "attributeName": {
+            "patterns": [
+                {
+                    "match": "(?x)  \\b([A-Za-z][A-Za-z0-9_]*)\\b  (:)",
+                    "captures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.xbabyscript"
+                        },
+                        "2": {
+                            "name": "punctuation.separator.xbabyscript"
+                        }
+                    }
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "include": "#sQuoteString"
+                },
+                {
+                    "include": "#dQuoteString"
+                }
+            ]
+        },
+        "sQuoteString": {
+            "name": "string.quoted.single.xrebirthbabyscript",
+            "begin": "'",
+            "end": "'",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.xrebirthbabyscript",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "dQuoteString": {
+            "name": "string.quoted.double.xrebirthbabyscript",
+            "begin": "(\")",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.string.begin.xbabyscript"
+                }
+            },
+            "end": "(\")",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.string.end.xbabyscript"
+                }
+            },
+            "patterns": [
+                {
+                    "name": "constant.character.escape.xrebirthbabyscript",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "slashComment": {
+            "name": "comment.line.double-slash.xrebirthbabyscript",
+            "begin": "//",
+            "end": "$\n?",
+            "patterns": []
+        },
+        "blockComment": {
+            "name": "comment.block.xrebirthbabyscript",
+            "begin": "/\\*",
+            "end": "\\*/",
+            "patterns": []
+        },
+        "numbers": {
+            "name": "constant.numeric.xrebirthbabyscript",
+            "match": "\\b-?[0-9]+(?:\\.[0-9]+)?(?:e[0-9]+)?(i|L|f|LF|ct|Cr|m|km|deg|rad|hp|ms|s|min|h)?\\b",
+            "captures": {
+                "1": {
+                    "name": "storage.type.xrebirthbabyscript"
+                }
+            },
+            "patterns": []
+        },
+        "arithmeticOperators": {
+            "patterns": [
+                {
+                    "match": "(?:-|\\+|/|\\*|%)",
+                    "name": "keyword.operator.arithmetic.xbabyscript"
+                }
+            ]
+        },
+        "nullUtilOperators": {
+            "patterns": [
+                {
+                    "match": "(?:\\?|@)",
+                    "name": "keyword.operator.conditional.xbabyscript"
+                }
+            ]
+        },
+        "comparisonOperators": {
+            "patterns": [
+                {
+                    "match": "==|!=|\\bgt\\b|\\bge\\b|\\blt\\b|\\ble\\b",
+                    "name": "keyword.operator.comparison.xbabyscript"
+                }
+            ]
+        },
+        "lookupDot": {
+            "patterns": [
+                {
+                    "match": "\\.",
+                    "name": "punctuation.accessor.xbabyscript"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.xrbs"
 }
