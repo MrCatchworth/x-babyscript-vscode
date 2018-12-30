@@ -2,6 +2,10 @@
     "name": "x-babyscript",
     "displayName": "X-series Babyscript",
     "description": "Syntax Highlighting for X-series Babyscript",
+    "repository": {
+        "type": "github",
+        "url": "https://github.com/MrCatchworth/x-babyscript-vscode"
+    },
     "version": "0.0.1",
     "publisher": "JohnnyJingle",
     "engines": {
