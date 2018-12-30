@@ -12,7 +12,7 @@
     ],
     "main": "main",
     "activationEvents": [
-        "*"
+        "onCommand:xbs.watch"
     ],
     "contributes": {
         "languages": [
