@@ -16,7 +16,8 @@
     ],
     "main": "main",
     "activationEvents": [
-        "onCommand:xbs.watch"
+        "onCommand:xbs.watch",
+        "onCommand:xbs.decompile"
     ],
     "contributes": {
         "languages": [
