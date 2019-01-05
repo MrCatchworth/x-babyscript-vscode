@@ -44,8 +44,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var vscode = __importStar(require("vscode"));
 var child_process = __importStar(require("child_process"));
-var path = __importStar(require("path"));
-var toolPath;
+var globals = __importStar(require("./globals"));
 var watcherProcess;
 var watcherOutputChannel;
 var watcherIsRunning = false;
@@ -84,7 +83,7 @@ function watcherCommand() {
                         watcherProcess.kill();
                     }
                     watcherProcess = child_process.spawn('dotnet', [
-                        toolPath,
+                        globals.toolPath,
                         'watch',
                         watcherPath
                     ]);
@@ -99,7 +98,6 @@ function watcherCommand() {
     });
 }
 function activate(context) {
-    toolPath = path.join(context.extensionPath, 'lib/XRebirthBabyScript.Core.dll');
     context.subscriptions.push(vscode.commands.registerCommand('xbs.watch', watcherCommand));
 }
 exports.activate = activate;

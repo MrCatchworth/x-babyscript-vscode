@@ -17,7 +17,8 @@
     "main": "main",
     "activationEvents": [
         "onCommand:xbs.watch",
-        "onCommand:xbs.decompile"
+        "onCommand:xbs.decompile",
+        "onCommand:xbs.compile"
     ],
     "contributes": {
         "languages": [
@@ -37,13 +38,21 @@
             {
                 "language": "xbabyscript",
                 "scopeName": "source.xrbs",
-                "path": "./syntaxes/xrebirthbabyscript.tmLanguage.json"
+                "path": "./syntaxes/x-babyscript.tmLanguage.json"
             }
         ],
         "commands": [
             {
                 "command": "xbs.watch",
                 "title": "X-Babyscript: Watch"
+            },
+            {
+                "command": "xbs.decompile",
+                "title": "X-Babyscript: Decompile"
+            },
+            {
+                "command": "xbs.compile",
+                "title": "X-Babyscript: Compile"
             }
         ]
     },

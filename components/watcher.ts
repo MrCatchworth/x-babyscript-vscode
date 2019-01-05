@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import * as child_process from 'child_process';
 import * as path from 'path';
+import * as globals from './globals';
 
-let toolPath: string;
 let watcherProcess: child_process.ChildProcess;
 let watcherOutputChannel: vscode.OutputChannel;
 let watcherIsRunning = false;
@@ -51,7 +51,7 @@ async function watcherCommand()
     }
 
     watcherProcess = child_process.spawn('dotnet', [
-        toolPath,
+        globals.toolPath,
         'watch',
         watcherPath
     ]);
@@ -66,7 +66,5 @@ async function watcherCommand()
 
 export function activate(context: vscode.ExtensionContext)
 {
-    toolPath = path.join(context.extensionPath, 'lib/XRebirthBabyScript.Core.dll');
-
     context.subscriptions.push(vscode.commands.registerCommand('xbs.watch', watcherCommand));
 }

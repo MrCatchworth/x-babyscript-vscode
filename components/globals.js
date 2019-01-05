@@ -7,12 +7,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var watcher = __importStar(require("./components/watcher"));
-var globals = __importStar(require("./components/globals"));
-var conversionCommands = __importStar(require("./components/conversionCommands"));
+var path = __importStar(require("path"));
 function activate(context) {
-    globals.activate(context);
-    watcher.activate(context);
-    conversionCommands.activate(context);
+    exports.toolPath = path.join(context.extensionPath, 'lib/XRebirthBabyScript.Core.dll');
 }
 exports.activate = activate;
