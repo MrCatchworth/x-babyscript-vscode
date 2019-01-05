@@ -16,6 +16,9 @@
                     "include": "#blocks"
                 },
                 {
+                    "include": "#dQuoteString"
+                },
+                {
                     "include": "#slashComment"
                 },
                 {
@@ -261,7 +264,7 @@
         "elements": {
             "patterns": [
                 {
-                    "match": "(?x)    (?:^|;)    \\s*    \\b([A-Za-z][A-Za-z0-9_]*)\\b    \\s*    (?= \\( | (;) | $)",
+                    "match": "(?x)    (?:^|;)    \\s*    \\b([A-Za-z][A-Za-z0-9_]*)\\b    \\s*    (?= \\( | (;) | \\{ | $)",
                     "captures": {
                         "1": {
                             "name": "keyword.control.other.xrbs"
