@@ -5,5 +5,5 @@ export var toolPath: string;
 
 export function activate(context: vscode.ExtensionContext)
 {
-    toolPath = path.join(context.extensionPath, 'lib/XRebirthBabyScript.Core.dll');
+    toolPath = path.join(context.extensionPath, 'lib/XBabyScript.dll');
 }

@@ -6,13 +6,13 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "XRebirthBabyScript.Core/1.0.0": {
+      "XBabyScript/1.0.0": {
         "dependencies": {
           "Antlr4.Runtime.Standard": "4.7.1.1",
           "CommandLineParser": "2.3.65"
         },
         "runtime": {
-          "XRebirthBabyScript.Core.dll": {}
+          "XBabyScript.dll": {}
         }
       },
       "Antlr4.Runtime.Standard/4.7.1.1": {
@@ -194,7 +194,7 @@
     }
   },
   "libraries": {
-    "XRebirthBabyScript.Core/1.0.0": {
+    "XBabyScript/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

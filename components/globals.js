@@ -9,6 +9,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = __importStar(require("path"));
 function activate(context) {
-    exports.toolPath = path.join(context.extensionPath, 'lib/XRebirthBabyScript.Core.dll');
+    exports.toolPath = path.join(context.extensionPath, 'lib/XBabyScript.dll');
 }
 exports.activate = activate;
