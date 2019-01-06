@@ -365,8 +365,20 @@
         },
         "sQuoteString": {
             "name": "string.quoted.single.xrebirthbabyscript",
-            "begin": "'",
-            "end": "'",
+
+            "begin": "(')",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.string.begin.xbabyscript"
+                }
+            },
+            "end": "$|(')",
+
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.string.end.xbabyscript"
+                }
+            },
             "patterns": [
                 {
                     "name": "constant.character.escape.xrebirthbabyscript",
@@ -382,7 +394,7 @@
                     "name": "punctuation.definition.string.begin.xbabyscript"
                 }
             },
-            "end": "(\")",
+            "end": "$|(\")",
             "endCaptures": {
                 "1": {
                     "name": "punctuation.definition.string.end.xbabyscript"
