@@ -6,6 +6,7 @@
         "type": "github",
         "url": "https://github.com/MrCatchworth/x-babyscript-vscode"
     },
+    "icon": "images/icon_main.png",
     "version": "0.0.1",
     "publisher": "JohnnyJingle",
     "engines": {
