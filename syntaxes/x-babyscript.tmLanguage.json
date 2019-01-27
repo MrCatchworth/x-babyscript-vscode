@@ -31,6 +31,9 @@
                     "include": "#assignRightHand"
                 },
                 {
+                    "include": "#assignOperators"
+                },
+                {
                     "include": "#braceLookup"
                 },
                 {
@@ -434,6 +437,21 @@
                 {
                     "match": "(?:-|\\+|/|\\*|%)",
                     "name": "keyword.operator.arithmetic.xbabyscript"
+                }
+            ]
+        },
+        "assignOperators": {
+            "patterns": [
+                {
+                    "match": "(--)|(\\+\\+)",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.operator.decrement.xbabyscript"
+                        },
+                        "2": {
+                            "name": "keyword.operator.increment.xbabyscript"
+                        }
+                    }
                 }
             ]
         },
