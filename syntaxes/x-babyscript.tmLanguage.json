@@ -31,6 +31,9 @@
                     "include": "#assignRightHand"
                 },
                 {
+                    "include": "#deleteStatement"
+                },
+                {
                     "include": "#assignOperators"
                 },
                 {
@@ -118,11 +121,40 @@
         "assignRightHand": {
             "patterns": [
                 {
-                    "begin": "(=)",
+                    "begin": "(\\+=)|(-=)|(=)",
                     "end": "(;)",
                     "beginCaptures": {
                         "1": {
+                            "name": "keyword.operator.assignment.compound.xbabyscript"
+                        },
+                        "2": {
+                            "name": "keyword.operator.assignment.compound.xbabyscript"
+                        },
+                        "3": {
                             "name": "keyword.operator.assignment.xbabyscript"
+                        }
+                    },
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.terminator.statement.xbabyscript"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#expressions"
+                        }
+                    ]
+                }
+            ]
+        },
+        "deleteStatement": {
+            "patterns": [
+                {
+                    "begin": "(delete)",
+                    "end": "(;)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.operator.expression.delete.xbabyscript"
                         }
                     },
                     "endCaptures": {
