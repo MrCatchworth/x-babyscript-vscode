@@ -7,9 +7,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var watcher = __importStar(require("./components/watcher"));
-var globals = __importStar(require("./components/globals"));
-var conversionCommands = __importStar(require("./components/conversionCommands"));
+const watcher = __importStar(require("./components/watcher"));
+const globals = __importStar(require("./components/globals"));
+const conversionCommands = __importStar(require("./components/conversionCommands"));
 function activate(context) {
     globals.activate(context);
     watcher.activate(context);

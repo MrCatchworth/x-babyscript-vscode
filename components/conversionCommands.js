@@ -7,37 +7,37 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var vscode = __importStar(require("vscode"));
-var child_process = __importStar(require("child_process"));
-var globals_1 = require("./globals");
-var path_1 = require("path");
-var conversionOutputChannel;
+const vscode = __importStar(require("vscode"));
+const child_process = __importStar(require("child_process"));
+const globals_1 = require("./globals");
+const path_1 = require("path");
+let conversionOutputChannel;
 function createConvertCommand(context, options) {
-    context.subscriptions.push(vscode.commands.registerCommand(options.id, function () {
+    context.subscriptions.push(vscode.commands.registerCommand(options.id, () => {
         if (!conversionOutputChannel) {
             conversionOutputChannel = vscode.window.createOutputChannel('X-Babyscript - Tasks');
         }
-        var activeEditor = vscode.window.activeTextEditor;
+        const activeEditor = vscode.window.activeTextEditor;
         if (!activeEditor) {
             return;
         }
         if (activeEditor.document.uri.scheme !== 'file') {
             return;
         }
-        var activeFilePath = activeEditor.document.uri.fsPath;
-        var convertProcess = child_process.spawn('dotnet', [
+        const activeFilePath = activeEditor.document.uri.fsPath;
+        const convertProcess = child_process.spawn('dotnet', [
             globals_1.toolPath,
             options.transpilerVerb,
             '-f',
             activeFilePath
         ]);
-        convertProcess.stderr.on('data', function (chunk) {
+        convertProcess.stderr.on('data', chunk => {
             conversionOutputChannel.append(chunk.toString());
         });
-        convertProcess.on('exit', function (code, signal) {
+        convertProcess.on('exit', (code, signal) => {
             if (code !== 0) {
                 conversionOutputChannel.show(true);
-                vscode.window.showErrorMessage("X-Babyscript: Conversion failed for " + path_1.basename(activeFilePath));
+                vscode.window.showErrorMessage(`X-Babyscript: Conversion failed for ${path_1.basename(activeFilePath)}`);
             }
         });
     }));

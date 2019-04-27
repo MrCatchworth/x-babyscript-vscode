@@ -7,7 +7,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = __importStar(require("path"));
+const path = __importStar(require("path"));
 function activate(context) {
     exports.toolPath = path.join(context.extensionPath, 'lib/XBabyScript.dll');
 }
