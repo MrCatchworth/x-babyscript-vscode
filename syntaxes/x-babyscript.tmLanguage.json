@@ -40,7 +40,7 @@
                     "include": "#braceLookup"
                 },
                 {
-                    "include": "#lookupDot"
+                    "include": "#namedLookup"
                 },
                 {
                     "match": ";",
@@ -62,6 +62,9 @@
                 },
                 {
                     "include": "#braceLookup"
+                },
+                {
+                    "include": "#namedLookup"
                 },
                 {
                     "include": "#tableDeclaration"
@@ -89,9 +92,6 @@
                 },
                 {
                     "include": "#lookupToken"
-                },
-                {
-                    "include": "#lookupDot"
                 }
             ]
         },
@@ -219,6 +219,18 @@
                 }
             ]
         },
+        "namedLookup": {
+            "name": "variable.other.object.property.xbabyscript",
+            "match": "(?x)  (\\.)  ([$A-Za-z_][A-Za-z0-9_]+)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.accessor.xbabyscript"
+                },
+                "2": {
+                    "name": "variable.other.object.property.xbabyscript"
+                }
+            }
+        },
         "tableDeclaration": {
             "patterns": [
                 {
@@ -226,7 +238,7 @@
                     "end": "(\\])",
                     "beginCaptures": {
                         "1": {
-                            "name": "keyword.operator.other.xbabyscript"
+                            "name": "keyword.operator.expression.table.xbabyscript"
                         },
                         "2": {
                             "name": "punctuation.squarebracket.open.xbabyscript"
@@ -302,7 +314,7 @@
                     "match": "(?x)    (?:^|;)    \\s*    \\b([A-Za-z][A-Za-z0-9_]*)\\b    \\s*    (?= \\( | (;) | \\{ | $)",
                     "captures": {
                         "1": {
-                            "name": "keyword.control.other.xrbs"
+                            "name": "entity.name.tag.xrbs"
                         },
                         "2": {
                             "name": "punctuation.terminator.statement.xrbs"
@@ -331,7 +343,7 @@
                             "match": "\\b([A-Za-z][A-Za-z0-9_]*)\\b(:)",
                             "captures": {
                                 "1": {
-                                    "name": "storage.type.xbabyscript"
+                                    "name": "entity.other.attribute-name.xbabyscript"
                                 },
                                 "2": {
                                     "name": "punctuation.separator.key-value.xbabyscript"
@@ -498,16 +510,16 @@
         "comparisonOperators": {
             "patterns": [
                 {
-                    "match": "==|!=|\\bgt\\b|\\bge\\b|\\blt\\b|\\ble\\b",
+                    "match": "==|!=",
                     "name": "keyword.operator.comparison.xbabyscript"
                 }
             ]
         },
-        "lookupDot": {
+        "textOperators": {
             "patterns": [
                 {
-                    "match": "\\.",
-                    "name": "punctuation.accessor.xbabyscript"
+                    "match": "\\bgt\\b|\\bge\\b|\\blt\\b|\\ble\\b",
+                    "name": "keyword.operator.expression.other.xbabyscript"
                 }
             ]
         }
