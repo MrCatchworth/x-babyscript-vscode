@@ -379,7 +379,15 @@
                 },
                 {
                     "name": "constant.language.xrebirthbabyscript",
-                    "match": "\\b(true|false|null|this|static)\\b"
+                    "match": "\\b(true|false|null)\\b"
+                },
+                {
+                    "name": "variable.language.this.xrbs",
+                    "match": "\\bthis\\b"
+                },
+                {
+                    "name": "variable.language.static.xrbs",
+                    "match": "\\bstatic\\b"
                 }
             ]
         },
