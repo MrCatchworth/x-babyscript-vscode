@@ -79,6 +79,9 @@
                     "include": "#comparisonOperators"
                 },
                 {
+                    "include": "#textOperators"
+                },
+                {
                     "include": "#nullUtilOperators"
                 },
                 {
